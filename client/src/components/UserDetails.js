@@ -1,14 +1,35 @@
 import React from 'react';
-import Skill from './Skill';
+import { CircularProgressbar  } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import { buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import 'semantic-ui-react';
 
 class UserDetails extends React.Component {
     render() {
-        return (<div>
-            {this.props.name}
-            <Skill skill="Fitness" details={this.props.skills.fitness}/>
-            <Skill skill="Academics" details={this.props.skills.academics}/>
-            <Skill skill="Career" details={this.props.skills.career}/>
-            <Skill skill="Social" details={this.props.skills.social}/>
+        const orangeColour = "rgb(238, 104, 83)";
+
+        return (
+        <div id="userDetails"style={{paddingTop: "10px"}}>
+            <div id="name_and_level">
+                <div style={{width: "5%", float: "left"}}>
+                    <CircularProgressbar
+                        value={this.props.experience}
+                        maxValue={this.props.experience_to_next_level}
+                        text={`${this.props.level}`}
+                        styles={buildStyles({
+                            pathTransition: 'none',
+                            pathColor: orangeColour,
+                            textColor: orangeColour,
+                            textSize: "40px"
+                        })}
+                    />
+                </div>
+            <h3 style={{fontSize: "39px", marginBottom: "2px", textAlign: "left", paddingLeft: "54px"}}>{this.props.name}</h3>
+            </div>
+            <div id="social_info" style={{float: "left", textAlign: "left", paddingLeft: "30px"}}>
+                <p style={{marginTop: "0px", marginBottom: "0px"}}>{this.props.reddit_name}, {this.props.facebook_name}</p>
+            </div>
         </div>);
     }
 }

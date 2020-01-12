@@ -1,4 +1,5 @@
 import React from 'react';
+import { Progress } from 'semantic-ui-react'
 
 class Skill extends React.Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class Skill extends React.Component {
         switch(skill) {
             case "Fitness":
                 return "F";
-            case "Academic":
+            case "Academics":
                 return "A";
             case "Career":
                 return "C";
@@ -22,11 +23,43 @@ class Skill extends React.Component {
     }
 
     render() {
-        return (<div>
-            <div>{this.getIcon(this.props.skill)}</div>
-        <div>Level: {this.props.details.level}</div>
-        <div>EXP: {this.props.details.exp}</div>
-        </div>);
+        const fitnessProgress = this.props.fitness.exp/this.props.fitness.next_level_exp * 100;
+        const academicsProgress = this.props.academics.exp/this.props.academics.next_level_exp * 100;
+        const careerProgress = this.props.career.exp/this.props.career.next_level_exp * 100;
+        const socialProgress = this.props.social.exp/this.props.social.next_level_exp * 100;
+
+        return (
+        <div style={{textAlign: "left", paddingLeft: "15px", paddingTop: "20px"}}>
+            <div id="fitness">
+                <div>{this.getIcon("fitness")}</div>
+                <div>
+                    <div style={{float: "left"}}>Level: {this.props.fitness.level}</div>
+                    <Progress percent={fitnessProgress} style={{width: "20%"}} progress>Fitness Level {this.props.fitness.level}</Progress>
+                </div>
+            </div>
+            <div id="academics">
+                <div>{this.getIcon("academics")}</div>
+                <div>
+                    <div>Level: {this.props.academics.level}</div>
+                    <Progress percent={academicsProgress} style={{width: "20%"}} progress>Academics Level {this.props.academics.level}</Progress>
+                </div>
+            </div>
+            <div id="career">
+                <div>{this.getIcon("career")}</div>
+                <div>
+                    <div>Level: {this.props.career.level}</div>
+                    <Progress percent={careerProgress} style={{width: "20%"}} progress>Career Level {this.props.career.level}</Progress>
+                </div>
+            </div>
+            <div id="social">
+                <div>{this.getIcon("social")}</div>
+                <div>
+                    <div>Level: {this.props.social.level}</div>
+                    <Progress percent={socialProgress} style={{width: "20%"}} progress>Social Level {this.props.social.level}</Progress>
+                </div>
+            </div>
+        </div>
+        );
     }
 }
 
