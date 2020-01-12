@@ -6,7 +6,7 @@ class DiaryForm extends React.Component {
         return (
         <Form className="diary-form" noValidate autoComplete="off">
             <TextArea placeholder='What did you do today?'></TextArea>
-            <Button>Add</Button>
+            <Button onClick={() => {alert("Not yet implemented! Need to send date and text")}}>Add</Button>
         </Form>);
     }
 }
