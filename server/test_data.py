@@ -30,4 +30,7 @@ character = {
        }
  }
 
-entry_1 = "I started working out at the gym, it's pretty fun. But I want to work at Google. I also started reading CTCI. Maybe i can meet people with a new job."
+entry_1 = {
+    'text':"I started working out at the gym, it's pretty fun. But I want to work at Google. I also started reading CTCI. Maybe i can meet people with a new job.",
+    'id': 'x2321dsw'
+    }

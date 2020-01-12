@@ -121,12 +121,14 @@ social_quests = {
     }
 }
 
-def get_quest(character: dict, text: str) -> dict:
+def get_quest(character: dict, journal_entry: str) -> dict:
     """
     Given a character dict and a text (diary entry), generate a quest or None
     """
+    text = journal_entry['text']
     quests = generate_quests(text)
     chosen_quest = choose_quest(character, quests)
+    chosen_quest['journal_entry_id'] = journal_entry['id']
     return chosen_quest
 
 def generate_quests(text: str) -> dict:
@@ -189,4 +191,5 @@ def choose_quest(character: dict, quests: dict) -> dict:
         return None
     keys = [key for key in quests.keys()]
     choice = random.choice(keys)
-    return quests[choice]
+    quest = quests[choice]
+    return quest
