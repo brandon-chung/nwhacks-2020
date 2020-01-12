@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from 'semantic-ui-react'
 
 class Skill extends React.Component {
     constructor(props) {
@@ -9,13 +10,13 @@ class Skill extends React.Component {
     getIcon(skill) {
         switch(skill) {
             case "Fitness":
-                return "F";
+                return <Icon name='heartbeat'/>;
             case "Academic":
-                return "A";
+                return <Icon name='book'/>;
             case "Career":
-                return "C";
+                return <Icon name='briefcase'/>;
             case "Social":
-                return "S";
+                return <Icon name='briefcase'/>;
             default:
                 return "N";
         }

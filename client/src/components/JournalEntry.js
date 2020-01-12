@@ -1,18 +1,24 @@
 import React from 'react';
-import Quest from './Quest';
+import { Segment } from 'semantic-ui-react';
 
-class DiaryEntry extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+const style = {
+    textAlign: "left",
+    paddingBottom: '20px',
+    fontSize: '20px'    
+};
+
+class JournalEntry extends React.Component {
     render() {
-        return (<div>
-            <div className="diary-entry">
-                <p>{this.props.entry.date}</p>
-                <p>{this.props.entry.text}</p>
+        return (
+        <Segment>
+            <div>
+                <div className="diary-entry" style={style}>
+                    <p><b>{this.props.entry.date}</b></p>
+                    <p>{this.props.entry.text}</p>
+                </div>
             </div>
-        </div>);
+        </Segment>);
     }
 }
 
-export default DiaryEntry;
+export default JournalEntry;
