@@ -69,6 +69,8 @@ class JournalForm extends React.Component {
                         if (this.getUser(this.props.user.first_name, this.props.user.last_name)) {
                             quest = this.getUser(this.props.user.first_name, this.props.user.last_name).character.skills[type].quest;
                             this.setState({modalOpen: true, quest: quest});
+                        } else {
+                            this.setState({modalOpen: true, quest: this.state.quest})
                         }
                         document.getElementById("entry").value = "";
                     }}/>}
