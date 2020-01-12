@@ -15,6 +15,7 @@ class JournalForm extends React.Component {
                 exp: 0
             }
         }
+        this.addPost = this.addPost.bind(this);
     }
 
     addPost(first_name, last_name, entry) {
@@ -27,28 +28,12 @@ class JournalForm extends React.Component {
             body: JSON.stringify({
                 journal_entry: entry
             })
-        }).then(function(response) {
+        }).then((response) => {
+            console.log(response)
             return response.json();
-        }).catch((err) => {
-            console.log(err);
-        });
-    }
-
-    getUser(first_name, last_name) {
-        fetch('http://localhost:5000/api/' + first_name + '/' + last_name, {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        }).then(response => response.json())
-            .then(data => {this.setState({
-                name: data.name,
-                reddit_name: data.reddit_name,
-                journal_entries: data.journal_entries,
-                character: data.character,
-                reddit_content: data.reddit_content
-            });
+        }).then((type) => {
+            console.log(type);
+            this.setState({modalOpen: true, quest: this.props.quests[type].quest});
         }).catch((err) => {
             console.log(err);
         });
@@ -75,14 +60,7 @@ class JournalForm extends React.Component {
                     id="entry"
                     fluid
                     action={<Button color='blue' position='left' icon='plus' onClick={() => {
-                        let type = this.addPost(this.props.user.first_name, this.props.user.last_name, document.getElementById("entry").value);
-                        let quest;
-                        if (this.getUser(this.props.user.first_name, this.props.user.last_name)) {
-                            quest = this.getUser(this.props.user.first_name, this.props.user.last_name).character.skills[type].quest;
-                            this.setState({modalOpen: true, quest: quest});
-                        } else {
-                            this.setState({modalOpen: true, quest: this.state.quest})
-                        }
+                        this.addPost(this.props.user.first_name, this.props.user.last_name, document.getElementById("entry").value)
                         document.getElementById("entry").value = "";
                         this.props.rerenderParentCallback();
                     }}/>}

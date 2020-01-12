@@ -13,7 +13,7 @@ const style = {
 class JournalComponent extends React.Component {
     render() {
         return (<div style={style}>
-            <JournalForm rerenderParentCallback={this.props.rerenderParentCallback} user={this.props.user}/>
+            <JournalForm rerenderParentCallback={this.props.rerenderParentCallback} user={this.props.user} quests={this.props.quests}/>
             <Tab
                 panes={[
                 { menuItem: 'Journal', render: () => 

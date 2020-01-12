@@ -72,7 +72,6 @@ class HomePage extends React.Component {
     rerenderParentCallback() {
         this.getUser("Andrew", "Tong");
         this.forceUpdate();
-        const a = 5;
     }
 
     componentDidMount() {
@@ -94,8 +93,7 @@ class HomePage extends React.Component {
                 character: data.character,
                 reddit_content: data.reddit_content
             });
-            const a = 5;})
-            .catch((err) => {
+        }).catch((err) => {
             console.log(err);
         });
     }
