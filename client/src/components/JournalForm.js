@@ -9,7 +9,11 @@ class JournalForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalOpen: false
+            modalOpen: false,
+            quest: {
+                description: "Nevermind!",
+                exp: 0
+            }
         }
     }
 
@@ -30,7 +34,17 @@ class JournalForm extends React.Component {
         });
     }
 
-    // TODO: get quest
+    getUser(first_name, last_name) {
+        fetch('http://localhost:5000/api/' + first_name + '/' + last_name, {
+            method: 'get',
+            header: 'application/json',
+        }).then(function(response) {
+            this.setState(response.json());
+            return response.json();
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
 
     cancelQuest(first_name, last_name, quest_type) {
         fetch('http://localhost:5000/api/quest/'+ first_name + '/' + last_name + '/' + quest_type, {
@@ -50,8 +64,12 @@ class JournalForm extends React.Component {
                     id="entry"
                     fluid
                     action={<Button color='blue' position='left' icon='plus' onClick={() => {
-                        this.addPost(this.props.user.first_name, this.props.user.last_name, document.getElementById("entry").value);
-                        this.setState({modalOpen: true});
+                        let type = this.addPost(this.props.user.first_name, this.props.user.last_name, document.getElementById("entry").value);
+                        let quest;
+                        if (this.getUser(this.props.user.first_name, this.props.user.last_name)) {
+                            quest = this.getUser(this.props.user.first_name, this.props.user.last_name).character.skills[type].quest;
+                            this.setState({modalOpen: true, quest: quest});
+                        }
                         document.getElementById("entry").value = "";
                     }}/>}
                     actionPosition='left'
@@ -64,17 +82,17 @@ class JournalForm extends React.Component {
                     <Header icon='trophy' content='New Quest!' />
                     <Modal.Content>
                     <p>
-                        This should be some quest information!
+                        {this.state.quest.description}
                     </p>
                     </Modal.Content>
                     <Modal.Actions>
                     <Button color='red' onClick={() => {
                         this.cancelQuest(this.props.user.first_name, this.props.user.last_name, this.props.quest_type);
-                        this.setState({modalOpen: false});
+                        this.setState({modalOpen: false, quest: this.state.quest});
                     }}>
                         <Icon name='remove' /> Decline
                     </Button>
-                    <Button color='green' onClick={() => {this.setState({modalOpen: false})}}>
+                    <Button color='green' onClick={() => {this.setState({modalOpen: false, quest: this.state.quest})}}>
                         <Icon name='checkmark' /> Accept
                     </Button>
                     </Modal.Actions>
