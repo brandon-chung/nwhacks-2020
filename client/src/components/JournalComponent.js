@@ -25,7 +25,7 @@ class JournalComponent extends React.Component {
                 </Tab.Pane> },
                 { menuItem: 'Quests', render: () => 
                 <Tab.Pane>
-                    <QuestComponent quests={this.props.quests}/>
+                    <QuestComponent user={this.props.user} quests={this.props.quests}/>
                 </Tab.Pane> },
             ]} />
             
