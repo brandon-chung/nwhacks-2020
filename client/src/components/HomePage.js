@@ -70,7 +70,7 @@ class HomePage extends React.Component {
                     <UserDetails name={this.state.name} skills={this.state.character.skills}/>
                 </Grid.Column>
                 <Grid.Column width={12}>
-                    <JournalComponent 
+                    <JournalComponent
                         entries={this.state.journal_entries}
                         quests={{
                             fitness: this.state.character.skills.fitness.quest,
