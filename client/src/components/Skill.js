@@ -1,5 +1,6 @@
 import React from 'react';
 import { Progress } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 
 class Skill extends React.Component {
     constructor(props) {
@@ -10,13 +11,13 @@ class Skill extends React.Component {
     getIcon(skill) {
         switch(skill) {
             case "Fitness":
-                return "F";
-            case "Academics":
-                return "A";
+                return <Icon name='heartbeat'/>;
+            case "Academic":
+                return <Icon name='book'/>;
             case "Career":
-                return "C";
+                return <Icon name='briefcase'/>;
             case "Social":
-                return "S";
+                return <Icon name='briefcase'/>;
             default:
                 return "N";
         }
@@ -34,28 +35,28 @@ class Skill extends React.Component {
                 <div>{this.getIcon("fitness")}</div>
                 <div>
                     <div style={{float: "left"}}>Level: {this.props.fitness.level}</div>
-                    <Progress percent={fitnessProgress} style={{width: "20%"}} progress>Fitness Level {this.props.fitness.level}</Progress>
+                    <Progress percent={fitnessProgress} style={{width: "100%"}} progress>Fitness Level {this.props.fitness.level}</Progress>
                 </div>
             </div>
             <div id="academics">
                 <div>{this.getIcon("academics")}</div>
                 <div>
                     <div>Level: {this.props.academics.level}</div>
-                    <Progress percent={academicsProgress} style={{width: "20%"}} progress>Academics Level {this.props.academics.level}</Progress>
+                    <Progress percent={academicsProgress} style={{width: "100%"}} progress>Academics Level {this.props.academics.level}</Progress>
                 </div>
             </div>
             <div id="career">
                 <div>{this.getIcon("career")}</div>
                 <div>
                     <div>Level: {this.props.career.level}</div>
-                    <Progress percent={careerProgress} style={{width: "20%"}} progress>Career Level {this.props.career.level}</Progress>
+                    <Progress percent={careerProgress} style={{width: "100%"}} progress>Career Level {this.props.career.level}</Progress>
                 </div>
             </div>
             <div id="social">
                 <div>{this.getIcon("social")}</div>
                 <div>
                     <div>Level: {this.props.social.level}</div>
-                    <Progress percent={socialProgress} style={{width: "20%"}} progress>Social Level {this.props.social.level}</Progress>
+                    <Progress percent={socialProgress} style={{width: "100%"}} progress>Social Level {this.props.social.level}</Progress>
                 </div>
             </div>
         </div>
