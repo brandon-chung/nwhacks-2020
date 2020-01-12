@@ -11,7 +11,7 @@ def submit_journal_entry(char: dict, journal_entry: dict):
     return char, quest_type
 
 def delete_quest(char: dict, quest_type: str) -> dict:
-    char['skills'][quest_type]['quest'] = None
+    char['skills'][quest_type]['quest'] = {"description": "", "exp": 0, "journal_entry_id": ""}
     return char
 
 def finish_quest(char: dict, quest_type: str) -> dict:

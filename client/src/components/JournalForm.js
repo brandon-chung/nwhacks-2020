@@ -79,6 +79,7 @@ class JournalForm extends React.Component {
                             this.setState({modalOpen: true, quest: this.state.quest})
                         }
                         document.getElementById("entry").value = "";
+                        this.props.rerenderParentCallback();
                     }}/>}
                     actionPosition='left'
                     placeholder='What did you do today?'
