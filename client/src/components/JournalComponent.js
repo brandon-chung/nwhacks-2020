@@ -7,7 +7,6 @@ import QuestComponent from './QuestComponent';
 class JournalComponent extends React.Component {
     render() {
         return (<div>
-            <b>Journal</b>
             <JournalForm/>
             <Tab panes={[
                 { menuItem: 'Journal', render: () => 

@@ -4,12 +4,10 @@ import Quest from './Quest';
 class QuestComponent extends React.Component {
     render() {
         return (<div className="quest-component">
-            <b>Quests</b>
-            {
-                this.props.quests.map((quest) => {
-                    return <Quest description={quest.description} exp={quest.exp}/>;
-                })
-            }
+            <Quest type="Fitness" quest={this.props.quests.fitness} />
+            <Quest type="Academic" quest={this.props.quests.academics} />
+            <Quest type="Career" quest={this.props.quests.career} />
+            <Quest type="Social" quest={this.props.quests.social} />
         </div>);
     }
 }
