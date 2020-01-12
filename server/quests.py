@@ -121,7 +121,7 @@ social_quests = {
     }
 }
 
-def get_quest(character: dict, journal_entry: str) -> (dict, str):
+def get_quest(character: dict, journal_entry: dict) -> (dict, str):
     """
     Given a character dict and a text (diary entry), generate a quest or None
     """

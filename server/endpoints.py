@@ -42,10 +42,10 @@ def get_reddit_info(reddit_name):
 
 
 @app.route("/api/journal-entry/<string:first_name>/<string:last_name>", methods=['POST'])
-def add_post(first_name, last_name):
+def add_journal_entry(first_name, last_name):
     '''
         {
-            diary_entry: string
+            journal_entry: string
         }
         '''
     content = request.json
