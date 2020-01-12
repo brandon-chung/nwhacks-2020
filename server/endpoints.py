@@ -68,6 +68,26 @@ def add_journal_entry(first_name, last_name):
     return JSONEncoder().encode(x)
 
 
+@app.route("/api/quest/<string:first_name>/<string:last_name>/<string:quest_type>", methods=['DELETE'])
+def del_quest(first_name, last_name, quest_type):
+    user = dtb.myuser.find_one({'name': first_name + ' ' + last_name})
+    char = delete_quest(user['character'], quest_type)
+    dtb.myuser.update_one({'name': first_name + ' ' + last_name}, {'$set': {'character': char}})
+
+    x = dtb.myuser.find_one({'name': first_name + ' ' + last_name})
+    return JSONEncoder().encode(x)
+
+
+@app.route("/api/finish-quest/<string:first_name>/<string:last_name>/<string:quest_type>", methods=['POST'])
+def fin_quest(first_name, last_name, quest_type):
+    user = dtb.myuser.find_one({'name': first_name + ' ' + last_name})
+    char = finish_quest(user['character'], quest_type)
+    dtb.myuser.update_one({'name': first_name + ' ' + last_name}, {'$set': {'character': char}})
+
+    x = dtb.myuser.find_one({'name': first_name + ' ' + last_name})
+    return JSONEncoder().encode(x)
+
+
 if __name__ == "__main__":
     app.debug = True
     host = os.environ.get('IP', '127.0.0.1')
