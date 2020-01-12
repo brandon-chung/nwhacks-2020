@@ -8,6 +8,9 @@ import SignInPage from './SignInPage';
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
+        this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
+        this.getUser = this.getUser.bind(this);
+        this.setState = this.setState.bind(this);
         this.state = {
             name: "Andrew Tong",
             reddit_name: "u/AndrewTong",
@@ -66,8 +69,14 @@ class HomePage extends React.Component {
         }
     }
 
+    rerenderParentCallback() {
+        this.getUser("Andrew", "Tong");
+        this.forceUpdate();
+        const a = 5;
+    }
+
     componentDidMount() {
-        this.getUser("chris", "hui");   // HARD-CODED
+        this.getUser("Andrew", "Tong");   // HARD-CODED
     }
 
     getUser(first_name, last_name) {
@@ -77,10 +86,16 @@ class HomePage extends React.Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-        }).then(function(response) {
-            this.setState(response.json());
-            return response.json();
-        }).catch((err) => {
+        }).then(response => response.json())
+            .then(data => {this.setState({
+                name: data.name,
+                reddit_name: data.reddit_name,
+                journal_entries: data.journal_entries,
+                character: data.character,
+                reddit_content: data.reddit_content
+            });
+            const a = 5;})
+            .catch((err) => {
             console.log(err);
         });
     }
@@ -89,11 +104,12 @@ class HomePage extends React.Component {
         return (
             <Grid>
                 <Grid.Row>
-                    <SignInPage user={{first_name: this.state.name.substr(0, this.state.name.indexOf(' ')), last_name: this.state.name.substr(this.state.name.indexOf(' ') + 1, ), reddit_name: this.state.reddit_name.substr(this.state.reddit_name.indexOf('/') + 1, )}}/>
+                    <SignInPage rerenderParentCallback={this.rerenderParentCallback} user={{first_name: this.state.name.substr(0, this.state.name.indexOf(' ')), last_name: this.state.name.substr(this.state.name.indexOf(' ') + 1, ), reddit_name: this.state.reddit_name.substr(this.state.reddit_name.indexOf('/') + 1, )}}/>
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column width={4}>
                       <UserDetails
+                          rerenderParentCallback={this.rerenderParentCallback}
                           experience={this.state.experience}
                           experience_to_next_level={this.state.experience_to_next_level}
                           level={this.state.level}
@@ -105,6 +121,7 @@ class HomePage extends React.Component {
                       />
                       <p></p>
                       <Skill
+                          rerenderParentCallback={this.rerenderParentCallback}
                           fitness={this.state.character.skills.fitness}
                           academics={this.state.character.skills.academics}
                           career={this.state.character.skills.career}
@@ -114,6 +131,7 @@ class HomePage extends React.Component {
                     </Grid.Column>
                     <Grid.Column width={12}>
                         <JournalComponent
+                            rerenderParentCallback={this.rerenderParentCallback}
                             user={{first_name: this.state.name.substr(0, this.state.name.indexOf(' ')), last_name: this.state.name.substr(this.state.name.indexOf(' ') + 1, )}}
                             entries={this.state.journal_entries}
                             quests={{

@@ -8,16 +8,19 @@ const style = {
 }
 
 class Quest extends React.Component {
-    
+    constructor(props) {
+        super(props);
+        this.state = props;
+    }
+
     finishQuest(first_name, last_name, quest_type) {
-        fetch('http://localhost:5000/api/finish-quest/' + first_name + '/' + last_name + '/' + quest_type, {
+        fetch('http://localhost:5000/api/finish-quest/' + first_name + '/' + last_name + '/' + quest_type.toLowerCase(), {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
         }).then(function(response) {
-            this.setState(response.json());
             return response.json();
         }).catch((err) => {
             console.log(err);
@@ -40,7 +43,7 @@ class Quest extends React.Component {
     }
 
     render() {
-        if (this.props.quest) {
+        if (this.props.quest && this.props.quest.description != "") {
             return (
                 <Segment>
                     <Grid style={style}>
@@ -56,7 +59,8 @@ class Quest extends React.Component {
                                 color="green" 
                                 style={{marginTop: '24px'}}
                                 onClick={() => {
-                                    this.finishQuest(this.props.user.first_name, this.props.user.last_name, this.props.type)
+                                    this.setState(this.finishQuest(this.props.user.first_name, this.props.user.last_name, this.props.type))
+                                    this.props.rerenderParentCallback();
                                 }}
                             >
                                 <Icon style={{marginRight: '0px'}} name="checkmark"/>

@@ -6,6 +6,9 @@ import 'react-circular-progressbar/dist/styles.css';
 import 'semantic-ui-react';
 
 class UserDetails extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         const orangeColour = "rgb(238, 104, 83)";
 

@@ -38,6 +38,7 @@ class SignInPage extends React.Component {
             <button onClick={() => {
                 this.createUser(document.getElementById("first_name").value, document.getElementById("last_name").value, document.getElementById("reddit_name").value);
                 this.setState({hidden: true});
+                this.props.rerenderParentCallback();
             }}
             >
                 Register

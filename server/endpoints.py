@@ -1,3 +1,4 @@
+import datetime
 import os
 import uuid
 
@@ -55,7 +56,8 @@ def add_journal_entry(first_name, last_name):
     user = dtb.myuser.find_one({'name': first_name + ' ' + last_name})
     aDict = {
         'text': content['journal_entry'],
-        'id': str(uuid.uuid1().int)
+        'id': str(uuid.uuid1().int),
+        'date': str(datetime.datetime.now())
     }
     user['journal_entries'].append(aDict)
     dtb.myuser.update_one({'name': first_name + ' ' + last_name},
