@@ -121,15 +121,15 @@ social_quests = {
     }
 }
 
-def get_quest(character: dict, journal_entry: str) -> dict:
+def get_quest(character: dict, journal_entry: str) -> (dict, str):
     """
     Given a character dict and a text (diary entry), generate a quest or None
     """
     text = journal_entry['text']
     quests = generate_quests(text)
-    chosen_quest = choose_quest(character, quests)
+    chosen_quest, quest_type = choose_quest(character, quests)
     chosen_quest['journal_entry_id'] = journal_entry['id']
-    return chosen_quest
+    return (chosen_quest, quest_type)
 
 def generate_quests(text: str) -> dict:
     """
@@ -175,7 +175,7 @@ def generate_quests(text: str) -> dict:
                 quests['social'] = quest
     return quests
 
-def choose_quest(character: dict, quests: dict) -> dict:
+def choose_quest(character: dict, quests: dict) -> (dict, str):
     """
     Randomly chooses available quests for skills without an existing quest.
     """
@@ -188,8 +188,8 @@ def choose_quest(character: dict, quests: dict) -> dict:
     for key in to_pop:
         quests.pop(key)
     if len(quests.keys()) == 0:
-        return None
+        return None, None
     keys = [key for key in quests.keys()]
     choice = random.choice(keys)
     quest = quests[choice]
-    return quest
+    return (quest, choice)

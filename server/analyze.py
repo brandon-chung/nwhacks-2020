@@ -12,7 +12,19 @@ skills = {'fitness': topics.fitness,
         'career': topics.career,
         'social': topics.social}
 
-def word_counts(word_tokens: list) -> dict:
+
+def get_exp(text: str) -> dict:
+    word_tokens = tokenize_text(text)
+    word_counts = count_words(word_tokens)
+    skill_exps = calc_exp(word_counts)
+    return skill_exps
+
+def tokenize_text(text: str) -> list:
+    tokens = word_tokenize(text)
+    word_tokens = [w for w in tokens if not w in stop_words]
+    return word_tokens
+
+def count_words(word_tokens: list) -> dict:
     word_counts = {}
     for word in word_tokens:
         if word in skill_words:
