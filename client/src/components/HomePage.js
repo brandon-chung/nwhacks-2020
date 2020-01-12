@@ -9,7 +9,7 @@ class HomePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "Test User",
+            name: "Andrew Tong",
             reddit_name: "u/AndrewTong",
             twitter_name: "@andrewtong0",
             facebook_name: "Andrew Tong",
@@ -67,11 +67,11 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
-        this.getUser("", "");  // TODO: Add hard-coded name to get data
+        this.getUser("chris", "hui");   // HARD-CODED
     }
 
     getUser(first_name, last_name) {
-        fetch('/api/' + first_name + '/' + last_name, {
+        fetch('http://localhost:5000/api/' + first_name + '/' + last_name, {
             method: 'get',
             header: 'application/json',
         }).then(function(response) {
@@ -86,7 +86,7 @@ class HomePage extends React.Component {
         return (
             <Grid>
                 <Grid.Row>
-                    <SignInPage/>
+                    <SignInPage user={{first_name: this.state.name.substr(0, this.state.name.indexOf(' ')), last_name: this.state.name.substr(this.state.name.indexOf(' ') + 1, ), reddit_name: this.state.reddit_name.substr(this.state.reddit_name.indexOf('/') + 1, )}}/>
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column width={4}>

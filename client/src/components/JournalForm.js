@@ -14,7 +14,7 @@ class JournalForm extends React.Component {
     }
 
     addPost(first_name, last_name, entry) {
-        fetch('/api/journal-entry/' + first_name + '/' + last_name, {
+        fetch('http://localhost:5000/api/journal-entry/' + first_name + '/' + last_name, {
             method: 'put',
             header: 'application/json',
             body: {
@@ -30,7 +30,7 @@ class JournalForm extends React.Component {
     // TODO: get quest
 
     cancelQuest(first_name, last_name, quest_type) {
-        fetch('/api/quest/'+ first_name + '/' + last_name + '/' + quest_type, {
+        fetch('http://localhost:5000/api/quest/'+ first_name + '/' + last_name + '/' + quest_type, {
             method: 'put',
             header: 'application/json'
         }).then(function(response) {

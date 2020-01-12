@@ -31,11 +31,11 @@ class SignInPage extends React.Component {
     render() {
         return (<div hidden={this.state.hidden}>
             First Name:
-            <input id="first_name"></input>
+            <input id="first_name" value={this.props.user.first_name}></input>
             Last Name:
-            <input id="last_name"></input>
+            <input id="last_name" value={this.props.user.last_name}></input>
             Reddit Name:
-            <input id="reddit_name"></input>
+            <input id="reddit_name" value={this.props.user.reddit_name}></input>
             <button onClick={() => {
                 this.createUser(document.getElementById("first_name").value, document.getElementById("last_name").value, document.getElementById("reddit_name").value);
                 this.setState({hidden: true});
