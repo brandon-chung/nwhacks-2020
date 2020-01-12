@@ -14,28 +14,48 @@ def addUser(firstname, lastname, reddit_name):
     mydict = {
         'name': firstname + ' ' + lastname,
         'reddit_name': reddit_name,
-        'diary_entries': [],
+        'journal_entries': [],
         'character': {
             'skills': {
                 'fitness': {
                     'level': 0,
                     'exp': 0,
-                    'next_level_exp': 0
+                    'next_level_exp': 0,
+                    'quest': {
+                        'description': '',
+                        'exp': 0,
+                        'journal_entry_id': ''
+                    }
                 },
                 'academics': {
                     'level': 0,
                     'exp': 0,
-                    'next_level_exp': 0
+                    'next_level_exp': 0,
+                    'quest': {
+                        'description': '',
+                        'exp': 0,
+                        'journal_entry_id': ''
+                    }
                 },
                 'career': {
                     'level': 0,
                     'exp': 0,
-                    'next_level_exp': 0
+                    'next_level_exp': 0,
+                    'quest': {
+                        'description': '',
+                        'exp': 0,
+                        'journal_entry_id': ''
+                    }
                 },
                 'social': {
                     'level': 0,
                     'exp': 0,
-                    'next_level_exp': 0
+                    'next_level_exp': 0,
+                    'quest': {
+                        'description': '',
+                        'exp': 0,
+                        'journal_entry_id': ''
+                    }
                 }
             }
         },

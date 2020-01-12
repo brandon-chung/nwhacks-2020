@@ -1,6 +1,6 @@
 import os
 import database.db as dtb
-from backend.encoder import JSONEncoder
+from server.encoder import JSONEncoder
 
 from flask import Flask, render_template, request, jsonify
 
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # @app.route("/")
 # def index():
-#     return render_template()
+#     return render_template('index.html')
 
 @app.route("/api/create-account", methods=["PUT"])
 def create_account():
@@ -39,6 +39,21 @@ def get_reddit_info(reddit_name):
     dtb.getRedditContent(reddit_name)
     user = dtb.myuser.find_one({'reddit_name': reddit_name})
     return JSONEncoder().encode(user)
+
+
+@app.route("/api/journal-entry/<string:first_name>/<string:last_name>", methods=['POST'])
+def add_post(first_name, last_name):
+    '''
+        {
+            diary_entry: string
+        }
+        '''
+    content = request.json
+    user = dtb.myuser.find_one({'name': first_name + ' ' + last_name})
+    user['diary_entries'].append(content['diary_entry'])
+    dtb.myuser.update_one({'name': first_name + ' ' + last_name}, {'$set': {'diary_entries': user['diary_entries']}})
+    x = dtb.myuser.find_one({'name': first_name + ' ' + last_name})
+    return JSONEncoder().encode(x)
 
 
 if __name__ == "__main__":
