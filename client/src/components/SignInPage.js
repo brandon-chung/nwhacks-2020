@@ -9,15 +9,19 @@ class SignInPage extends React.Component {
     }
 
     createUser(first_name, last_name, reddit_name) {
-        fetch('/api/create-account', {
-            method: 'put',
-            header: 'application/json',
-            body: {
+        fetch('http://localhost:5000/api/create-account', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
                 first_name: first_name,
                 last_name: last_name,
-                reddit_name: reddit_name            
-            }
-        }).then(function(response) {
+                reddit_name: reddit_name
+            })
+        }).then(function (response) {
+            console.log(response.json());
             return response.json();
         }).catch((err) => {
             console.log(err);
@@ -35,7 +39,7 @@ class SignInPage extends React.Component {
             <button onClick={() => {
                 this.createUser(document.getElementById("first_name").value, document.getElementById("last_name").value, document.getElementById("reddit_name").value);
                 this.setState({hidden: true});
-                }}
+            }}
             >
                 Register
             </button>
