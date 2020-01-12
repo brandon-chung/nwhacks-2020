@@ -12,7 +12,10 @@ class Quest extends React.Component {
     finishQuest(first_name, last_name, quest_type) {
         fetch('http://localhost:5000/api/finish-quest/' + first_name + '/' + last_name + '/' + quest_type, {
             method: 'post',
-            header: 'application/json',     
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
         }).then(function(response) {
             this.setState(response.json());
             return response.json();
