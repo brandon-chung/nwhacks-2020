@@ -41,9 +41,14 @@ class JournalForm extends React.Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-        }).then(function(response) {
-            this.setState(response.json());
-            return response.json();
+        }).then(response => response.json())
+            .then(data => {this.setState({
+                name: data.name,
+                reddit_name: data.reddit_name,
+                journal_entries: data.journal_entries,
+                character: data.character,
+                reddit_content: data.reddit_content
+            });
         }).catch((err) => {
             console.log(err);
         });
