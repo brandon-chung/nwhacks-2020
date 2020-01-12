@@ -1,4 +1,4 @@
-import topics
+import server.topics as topics
 import nltk
 from nltk.corpus import stopwords 
 from nltk.tokenize import word_tokenize 
