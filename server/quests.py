@@ -16,7 +16,7 @@ fitness_quests = {
         "exp": 5
     },
     "achieved a new PR for": {
-        "description":"Achieve a new PR for",
+        "description":"Achieve a new PR for ",
         "exp": 7
     },
     "I ran a half-marathon": {
@@ -79,18 +79,18 @@ academic_quests = {
         "exp": 10
     },
     "Midterm on": {
-        "description":"Ace your midterm",
+        "description":"Ace your midterm.",
         "exp": 10
     },
     "Hard class": {
-        "description":"Don't fail any classes this semester",
+        "description":"Don't fail any classes this semester.",
         "exp": 10
     },
     
 }
 career_quests = {
     "got an interview": {
-        "description":"Ace your interview",
+        "description":"Ace your interview.",
         "exp": 5
     },
     "I want a promotion": {
@@ -140,7 +140,7 @@ def generate_quests(text: str) -> dict:
     quests = {}
     for phrase, quest in fitness_quests.items():
         if phrase.lower() in text.lower():
-            if phrase.lower() == 'achieved a new pr for':
+            if phrase.lower() == 'achieved a new pr for ':
                 exercise = text.lower().partition('achieved a new pr for')[2].split()[0]
                 quest['description'] = quest['description'] + exercise + '.'
                 quests['fitness'] = quest
@@ -194,7 +194,9 @@ def choose_quest(character: dict, quests: dict) -> (dict, str):
     #     quests.pop(key)
     # if len(quests.keys()) == 0:
     #     return None, None
-    keys = [key for key in quests.keys()]
+    keys = [key for key in quests.keys() if not key in to_pop]
+    if len(keys) == 0:
+        return (quest, choice)
     choice = random.choice(keys)
     quest = quests[choice]
     return (quest, choice)
