@@ -3,6 +3,7 @@ import JournalEntry from './JournalEntry';
 import JournalForm from './JournalForm';
 import { Tab } from 'semantic-ui-react';
 import QuestComponent from './QuestComponent';
+import StatsComponent from './StatsComponent';
 import '../styles/JournalComponent.css';
 
 const style = {
@@ -26,6 +27,10 @@ class JournalComponent extends React.Component {
                 { menuItem: 'Quests', render: () => 
                 <Tab.Pane>
                     <QuestComponent user={this.props.user} quests={this.props.quests}/>
+                </Tab.Pane> },
+                { menuItem: 'Stats', render: () => 
+                <Tab.Pane>
+                    <StatsComponent/>
                 </Tab.Pane> },
             ]} />
             
