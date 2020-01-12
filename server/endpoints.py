@@ -61,11 +61,10 @@ def add_journal_entry(first_name, last_name):
     dtb.myuser.update_one({'name': first_name + ' ' + last_name},
                           {'$set': {'journal_entries': user['journal_entries']}})
 
-    char = submit_journal_entry(user['character'], aDict)
+    char, quest_type = submit_journal_entry(user['character'], aDict)
     dtb.myuser.update_one({'name': first_name + ' ' + last_name}, {'$set': {'character': char}})
 
-    x = dtb.myuser.find_one({'name': first_name + ' ' + last_name})
-    return JSONEncoder().encode(x)
+    return jsonify(quest_type)
 
 
 @app.route("/api/quest/<string:first_name>/<string:last_name>/<string:quest_type>", methods=['DELETE'])

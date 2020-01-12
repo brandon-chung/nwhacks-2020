@@ -21,7 +21,6 @@ class SignInPage extends React.Component {
                 reddit_name: reddit_name
             })
         }).then(function (response) {
-            console.log(response.json());
             return response.json();
         }).catch((err) => {
             console.log(err);

@@ -8,7 +8,7 @@ def submit_journal_entry(char: dict, journal_entry: dict):
     quest, quest_type = quests.get_quest(char, journal_entry)
     skill_exps = analyze.get_exp(journal_entry['text'])
     char = character.update_character(char, skill_exps=skill_exps, quest=quest, quest_type=quest_type)
-    return char
+    return char, quest_type
 
 def delete_quest(char: dict, quest_type: str) -> dict:
     char['skills'][quest_type]['quest'] = None

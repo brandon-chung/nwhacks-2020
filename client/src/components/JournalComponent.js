@@ -12,7 +12,7 @@ const style = {
 class JournalComponent extends React.Component {
     render() {
         return (<div style={style}>
-            <JournalForm/>
+            <JournalForm user={this.props.user}/>
             <Tab
                 panes={[
                 { menuItem: 'Journal', render: () => 

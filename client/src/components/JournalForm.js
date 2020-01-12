@@ -15,11 +15,14 @@ class JournalForm extends React.Component {
 
     addPost(first_name, last_name, entry) {
         fetch('http://localhost:5000/api/journal-entry/' + first_name + '/' + last_name, {
-            method: 'put',
-            header: 'application/json',
-            body: {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
                 journal_entry: entry
-            }
+            })
         }).then(function(response) {
             return response.json();
         }).catch((err) => {
@@ -31,7 +34,7 @@ class JournalForm extends React.Component {
 
     cancelQuest(first_name, last_name, quest_type) {
         fetch('http://localhost:5000/api/quest/'+ first_name + '/' + last_name + '/' + quest_type, {
-            method: 'put',
+            method: 'delete',
             header: 'application/json'
         }).then(function(response) {
             return response.json();
@@ -47,7 +50,7 @@ class JournalForm extends React.Component {
                     id="entry"
                     fluid
                     action={<Button color='blue' position='left' icon='plus' onClick={() => {
-                        this.addPost(this.props.first_name, this.props.last_name, document.getElementById("entry").value);
+                        this.addPost(this.props.user.first_name, this.props.user.last_name, document.getElementById("entry").value);
                         this.setState({modalOpen: true});
                         document.getElementById("entry").value = "";
                     }}/>}
@@ -66,7 +69,7 @@ class JournalForm extends React.Component {
                     </Modal.Content>
                     <Modal.Actions>
                     <Button color='red' onClick={() => {
-                        this.cancelQuest(this.props.first_name, this.props.last_name, this.props.quest_type);
+                        this.cancelQuest(this.props.user.first_name, this.props.user.last_name, this.props.quest_type);
                         this.setState({modalOpen: false});
                     }}>
                         <Icon name='remove' /> Decline
