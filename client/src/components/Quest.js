@@ -43,7 +43,7 @@ class Quest extends React.Component {
     }
 
     render() {
-        if (this.props.quest || this.props.quest.description === "") {
+        if (this.props.quest && this.props.quest.description != "") {
             return (
                 <Segment>
                     <Grid style={style}>
