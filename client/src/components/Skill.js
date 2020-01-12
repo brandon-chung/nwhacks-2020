@@ -34,29 +34,25 @@ class Skill extends React.Component {
             <div id="fitness">
                 <div>{this.getIcon("Fitness")}</div>
                 <div>
-                    <div style={{float: "left"}}>Level: {this.props.fitness.level}</div>
-                    <Progress percent={fitnessProgress} style={{width: "100%"}} progress>Fitness Level {this.props.fitness.level}</Progress>
+                    <Progress percent={fitnessProgress} style={{width: "100%"}}>Fitness Level {this.props.fitness.level}</Progress>
                 </div>
             </div>
             <div id="academics">
                 <div>{this.getIcon("Academics")}</div>
                 <div>
-                    <div>Level: {this.props.academics.level}</div>
-                    <Progress percent={academicsProgress} style={{width: "100%"}} progress>Academics Level {this.props.academics.level}</Progress>
+                    <Progress percent={academicsProgress} style={{width: "100%"}}>Academics Level {this.props.academics.level}</Progress>
                 </div>
             </div>
             <div id="career">
                 <div>{this.getIcon("Career")}</div>
                 <div>
-                    <div>Level: {this.props.career.level}</div>
-                    <Progress percent={careerProgress} style={{width: "100%"}} progress>Career Level {this.props.career.level}</Progress>
+                    <Progress percent={careerProgress} style={{width: "100%"}}>Career Level {this.props.career.level}</Progress>
                 </div>
             </div>
             <div id="social">
                 <div>{this.getIcon("Social")}</div>
                 <div>
-                    <div>Level: {this.props.social.level}</div>
-                    <Progress percent={socialProgress} style={{width: "100%"}} progress>Social Level {this.props.social.level}</Progress>
+                    <Progress percent={socialProgress} style={{width: "100%"}}>Social Level {this.props.social.level}</Progress>
                 </div>
             </div>
         </div>

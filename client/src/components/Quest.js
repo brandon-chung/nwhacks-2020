@@ -10,7 +10,6 @@ const style = {
 class Quest extends React.Component {
     constructor(props) {
         super(props);
-        this.state = props;
     }
 
     finishQuest(first_name, last_name, quest_type) {
@@ -59,7 +58,7 @@ class Quest extends React.Component {
                                 color="green" 
                                 style={{marginTop: '24px'}}
                                 onClick={() => {
-                                    this.setState(this.finishQuest(this.props.user.first_name, this.props.user.last_name, this.props.type))
+                                    this.finishQuest(this.props.user.first_name, this.props.user.last_name, this.props.type)
                                     this.props.rerenderParentCallback();
                                 }}
                             >

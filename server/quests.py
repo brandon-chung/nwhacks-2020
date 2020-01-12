@@ -128,7 +128,9 @@ def get_quest(character: dict, journal_entry: dict) -> (dict, str):
     text = journal_entry['text']
     quests = generate_quests(text)
     chosen_quest, quest_type = choose_quest(character, quests)
-    chosen_quest['journal_entry_id'] = journal_entry['id']
+    if chosen_quest is not None:
+
+        chosen_quest['journal_entry_id'] = journal_entry['id']
     return (chosen_quest, quest_type)
 
 def generate_quests(text: str) -> dict:
@@ -186,7 +188,7 @@ def choose_quest(character: dict, quests: dict) -> (dict, str):
     print(quests)
     for skill in quests.keys():
         # print(character['skills'])
-        if character['skills'][skill]['quest']:
+        if character['skills'][skill]['quest']['description']:
             to_pop.append(skill)
 
     # Todo: I don't understand what this is doing, can you let me know? This caused it to fail

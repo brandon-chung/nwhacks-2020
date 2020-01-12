@@ -22,14 +22,14 @@ class HomePage extends React.Component {
                 { text: "Something else from database...",
                 date: "Jan 12, 2019 12:14:00"}
             ],
-            experience: 50,
-            experience_to_next_level: 80,
-            level: 67,
+            experience: 0,
+            experience_to_next_level: 0,
+            level: 0,
             character: {
                 skills: {
                     fitness: {
-                        level: 2,
-                        exp: 30,
+                        level: 0,
+                        exp: 0,
                         next_level_exp: 50,
                         quest: {
                             description: "Dummy quest1",

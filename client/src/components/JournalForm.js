@@ -30,10 +30,16 @@ class JournalForm extends React.Component {
             })
         }).then((response) => {
             console.log(response)
-            return response.json();
+            return response.text();
         }).then((type) => {
+            type = type.replace(/(\n|")/gm, "");
+            if (type === "null") {
+                this.setState({modalOpen: false, quest: {description: ""}});
+            }
+            else {
+                this.setState({modalOpen: true, quest: this.props.quests[type]});
+            }
             console.log(type);
-            this.setState({modalOpen: true, quest: this.props.quests[type].quest});
         }).catch((err) => {
             console.log(err);
         });
