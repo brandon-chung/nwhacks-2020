@@ -10,20 +10,24 @@ class UserDetails extends React.Component {
         super(props);
     }
     render() {
-        const orangeColour = "rgb(238, 104, 83)";
-
+        const blueColour = "rgb(33, 133, 208)";
+        const level = Math.floor(this.props.experience/this.props.experience_to_next_level);
+        const experience = this.props.experience % this.props.experience_to_next_level;
+        console.log(this.props.experience);
+        console.log(this.props.experience_to_next_level);
+        console.log(experience);
         return (
         <div id="userDetails"style={{paddingTop: "10px"}}>
             <div id="name_and_level">
                 <div style={{width: "20%", float: "left"}}>
                     <CircularProgressbar
-                        value={this.props.experience}
+                        value={experience}
                         maxValue={this.props.experience_to_next_level}
-                        text={`${this.props.level}`}
+                        text={`${level}`}
                         styles={buildStyles({
                             pathTransition: 'none',
-                            pathColor: orangeColour,
-                            textColor: orangeColour,
+                            pathColor: blueColour,
+                            textColor: blueColour,
                             textSize: "40px"
                         })}
                     />

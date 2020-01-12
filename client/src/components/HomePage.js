@@ -23,8 +23,8 @@ class HomePage extends React.Component {
                 date: "Jan 12, 2019 12:14:00"}
             ],
             experience: 0,
-            experience_to_next_level: 0,
-            level: 0,
+            experience_to_next_level: 100,
+            level: 1,
             character: {
                 skills: {
                     fitness: {
@@ -91,7 +91,17 @@ class HomePage extends React.Component {
                 reddit_name: data.reddit_name,
                 journal_entries: data.journal_entries,
                 character: data.character,
-                reddit_content: data.reddit_content
+                reddit_content: data.reddit_content,
+                experience:
+                    this.state.character.skills.fitness.exp +
+                    this.state.character.skills.academics.exp +
+                    this.state.character.skills.career.exp +
+                    this.state.character.skills.social.exp,
+                level:
+                    this.state.character.skills.fitness.level +
+                    this.state.character.skills.academics.level +
+                    this.state.character.skills.career.level +
+                    this.state.character.skills.social.level
             });
         }).catch((err) => {
             console.log(err);

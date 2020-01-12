@@ -21,6 +21,8 @@ class Quest extends React.Component {
             },
         }).then(function(response) {
             return response.json();
+        }).then(() => {
+            this.props.rerenderParentCallback()
         }).catch((err) => {
             console.log(err);
         });
@@ -58,7 +60,7 @@ class Quest extends React.Component {
                                 color="green" 
                                 style={{marginTop: '24px'}}
                                 onClick={() => {
-                                    this.finishQuest(this.props.user.first_name, this.props.user.last_name, this.props.type)
+                                    this.finishQuest(this.props.user.first_name, this.props.user.last_name, this.props.type);
                                     this.props.rerenderParentCallback();
                                 }}
                             >

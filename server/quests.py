@@ -16,7 +16,7 @@ fitness_quests = {
         "exp": 5
     },
     "achieved a new PR for": {
-        "description":"Achieve a new PR for ",
+        "description":"Achieve a new PR",
         "exp": 7
     },
     "I ran a half-marathon": {

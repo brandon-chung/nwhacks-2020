@@ -32,6 +32,7 @@ class JournalForm extends React.Component {
             console.log(response)
             return response.text();
         }).then((type) => {
+            this.props.rerenderParentCallback();
             type = type.replace(/(\n|")/gm, "");
             if (type === "null") {
                 this.setState({modalOpen: false, quest: {description: ""}});
@@ -40,6 +41,8 @@ class JournalForm extends React.Component {
                 this.setState({modalOpen: true, quest: this.props.quests[type]});
             }
             console.log(type);
+        }).then(() => {
+            this.props.rerenderParentCallback();
         }).catch((err) => {
             console.log(err);
         });
@@ -54,6 +57,8 @@ class JournalForm extends React.Component {
             },
         }).then(function(response) {
             return response.json();
+        }).then(() => {
+            this.props.rerenderParentCallback();
         }).catch((err) => {
             console.log(err);
         });
@@ -80,7 +85,8 @@ class JournalForm extends React.Component {
                     <Header icon='trophy' content='New Quest!' />
                     <Modal.Content>
                     <p>
-                        {this.state.quest.description}
+                        Mystery quest!
+                        {/*{this.state.quest.description}*/}
                     </p>
                     </Modal.Content>
                     <Modal.Actions>
