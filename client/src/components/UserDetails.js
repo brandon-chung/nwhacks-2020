@@ -13,9 +13,7 @@ class UserDetails extends React.Component {
         const blueColour = "rgb(33, 133, 208)";
         const level = Math.floor(this.props.experience/this.props.experience_to_next_level);
         const experience = this.props.experience % this.props.experience_to_next_level;
-        console.log(this.props.experience);
-        console.log(this.props.experience_to_next_level);
-        console.log(experience);
+
         return (
         <div id="userDetails"style={{paddingTop: "10px"}}>
             <div id="name_and_level">
