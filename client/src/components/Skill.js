@@ -24,8 +24,8 @@ class Skill extends React.Component {
     render() {
         return (<div>
             <div>{this.getIcon(this.props.skill)}</div>
-        <div>Level: {this.props.details.level}</div>
-        <div>EXP: {this.props.details.exp}</div>
+            <div>Level: {this.props.details.level}</div>
+            <div>EXP: {this.props.details.exp}</div>
         </div>);
     }
 }

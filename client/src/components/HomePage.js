@@ -1,6 +1,7 @@
 import React from 'react';
-import DiaryComponent from './DiaryComponent'
+import JournalComponent from './JournalComponent'
 import UserDetails from './UserDetails'
+import QuestComponent from './QuestComponent';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -19,26 +20,42 @@ class HomePage extends React.Component {
                     fitness: {
                         'level': 0,
                         'exp': 0,
-                        'next_level_exp': 0
+                        'next_level_exp': 0,
+                        'quests': {
+                            description: "Dummy quest",
+                            exp: 5
+                        }
                     },
                     'academics': {
                         'level': 0,
                         'exp': 0,
-                        'next_level_exp': 0
+                        'next_level_exp': 0,
+                        'quests': {
+                            description: "Dummy quest",
+                            exp: 5
+                        }
                     },
                     'career': {
                         'level': 0,
                         'exp': 0,
-                        'next_level_exp': 0
+                        'next_level_exp': 0,
+                        'quests': {
+                            description: "Dummy quest",
+                            exp: 5
+                        }
                     },
                     'social': {
                         'level': 0,
                         'exp': 0,
-                        'next_level_exp': 0
+                        'next_level_exp': 0,
+                        'quests': {
+                            description: "Dummy quest",
+                            exp: 5
+                        }
                     }
                 }
             },
-            'reddit_content': []
+            'reddit_content': [],
         }
     }
 
@@ -49,7 +66,10 @@ class HomePage extends React.Component {
     render() {
         return (<div>
             <UserDetails name={this.state.name} skills={this.state.character.skills}/>
-            <DiaryComponent entries={this.state.diary_entries}/>
+            <JournalComponent 
+                entries={this.state.diary_entries}
+                quests={[this.state.character.skills.fitness.quests, this.state.character.skills.fitness.quests, this.state.character.skills.fitness.quests, this.state.character.skills.fitness.quests]}
+            />
         </div>);
     }
 }
