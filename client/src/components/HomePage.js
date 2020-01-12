@@ -1,6 +1,7 @@
 import React from 'react';
 import JournalComponent from './JournalComponent'
 import UserDetails from './UserDetails'
+import Skill from './Skill'
 import { Grid } from 'semantic-ui-react'
 import SignInPage from './SignInPage';
 
@@ -9,47 +10,52 @@ class HomePage extends React.Component {
         super(props);
         this.state = {
             name: "Test User",
-            reddit_name: "Meh",
+            reddit_name: "u/AndrewTong",
+            twitter_name: "@andrewtong0",
+            facebook_name: "Andrew Tong",
             journal_entries: [
                 { text: "Something from database...",
-                date: "Jan 11, 2019 12:33:00"}, 
+                date: "Jan 11, 2019 12:33:00"},
                 { text: "Something else from database...",
-                date: "Jan 12, 2019 12:14:00"} 
+                date: "Jan 12, 2019 12:14:00"}
             ],
+            experience: 50,
+            experience_to_next_level: 80,
+            level: 67,
             character: {
                 skills: {
                     fitness: {
-                        'level': 0,
-                        'exp': 0,
-                        'next_level_exp': 0,
-                        'quest': {
+                        level: 2,
+                        exp: 30,
+                        next_level_exp: 50,
+                        quest: {
                             description: "Dummy quest1",
                             exp: 5
                         }
                     },
-                    'academics': {
-                        'level': 0,
-                        'exp': 0,
-                        'next_level_exp': 0,
-                        'quest': {
+                    academics: {
+                        level: 3,
+                        exp: 65,
+                        next_level_exp: 100,
+                        quest: {
                             description: "Dummy quest2",
                             exp: 5
                         }
                     },
-                    'career': {
-                        'level': 0,
-                        'exp': 0,
-                        'next_level_exp': 0,
-                        'quest': {
+                    career: {
+                        level: 0,
+                        exp: 10,
+                        next_level_exp: 20,
+                        quest: {
                             description: "Dummy quest3",
                             exp: 5
                         }
                     },
-                    'social': {
-                        'level': 0,
-                        'exp': 0,
-                        'next_level_exp': 0,
-                        'quest': {
+                    social: {
+                        level: 5,
+                        exp: 90,
+                        next_level_exp: 120,
+                        quest: {
                             description: "Dummy quest4",
                             exp: 5
                         }
@@ -67,7 +73,7 @@ class HomePage extends React.Component {
     getUser(first_name, last_name) {
         fetch('/api/' + first_name + '/' + last_name, {
             method: 'get',
-            header: 'application/json',     
+            header: 'application/json',
         }).then(function(response) {
             this.setState(response.json());
             return response.json();
@@ -84,7 +90,24 @@ class HomePage extends React.Component {
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column width={4}>
-                        <UserDetails name={this.state.name} skills={this.state.character.skills}/>
+                      <UserDetails
+                          experience={this.state.experience}
+                          experience_to_next_level={this.state.experience_to_next_level}
+                          level={this.state.level}
+                          name={this.state.name}
+                          reddit_name={this.state.reddit_name}
+                          twitter_name={this.state.twitter_name}
+                          facebook_name={this.state.facebook_name}
+                          skills={this.state.character.skills}
+                      />
+                      <p></p>
+                      <Skill
+                          fitness={this.state.character.skills.fitness}
+                          academics={this.state.character.skills.academics}
+                          career={this.state.character.skills.career}
+                          social={this.state.character.skills.social}
+                      >
+                      </Skill>
                     </Grid.Column>
                     <Grid.Column width={12}>
                         <JournalComponent
