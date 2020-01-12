@@ -1,15 +1,20 @@
 import React from 'react';
-import JournalEntry from './JournalEntry'
-import JournalForm from './JournalForm'
-import { Tab } from 'semantic-ui-react'
+import JournalEntry from './JournalEntry';
+import JournalForm from './JournalForm';
+import { Tab } from 'semantic-ui-react';
 import QuestComponent from './QuestComponent';
+import '../styles/JournalComponent.css';
+
+const style = {
+    fontSize: '20px'
+}
 
 class JournalComponent extends React.Component {
     render() {
-        return (<div>
-            <b>Journal</b>
+        return (<div style={style}>
             <JournalForm/>
-            <Tab panes={[
+            <Tab
+                panes={[
                 { menuItem: 'Journal', render: () => 
                 <Tab.Pane>
                     {
@@ -20,7 +25,7 @@ class JournalComponent extends React.Component {
                 </Tab.Pane> },
                 { menuItem: 'Quests', render: () => 
                 <Tab.Pane>
-                    <QuestComponent quests={this.props.quests}/>
+                    <QuestComponent user={this.props.user} quests={this.props.quests}/>
                 </Tab.Pane> },
             ]} />
             
