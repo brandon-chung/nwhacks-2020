@@ -1,6 +1,9 @@
 import os
+import uuid
+
 import database.db as dtb
 from server.encoder import JSONEncoder
+from server.action import *
 
 from flask import Flask, render_template, request, jsonify
 
@@ -47,11 +50,20 @@ def add_journal_entry(first_name, last_name):
         {
             journal_entry: string
         }
-        '''
+    '''
     content = request.json
     user = dtb.myuser.find_one({'name': first_name + ' ' + last_name})
-    user['diary_entries'].append(content['diary_entry'])
-    dtb.myuser.update_one({'name': first_name + ' ' + last_name}, {'$set': {'diary_entries': user['diary_entries']}})
+    aDict = {
+        'text': content['journal_entry'],
+        'id': str(uuid.uuid1().int)
+    }
+    user['journal_entries'].append(aDict)
+    dtb.myuser.update_one({'name': first_name + ' ' + last_name},
+                          {'$set': {'journal_entries': user['journal_entries']}})
+
+    char = submit_journal_entry(user['character'], aDict)
+    dtb.myuser.update_one({'name': first_name + ' ' + last_name}, {'$set': {'character': char}})
+
     x = dtb.myuser.find_one({'name': first_name + ' ' + last_name})
     return JSONEncoder().encode(x)
 

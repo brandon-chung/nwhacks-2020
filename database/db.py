@@ -1,5 +1,5 @@
 import pymongo
-import reddit
+import server.reddit as reddit
 
 client = pymongo.MongoClient(
     "mongodb+srv://user:NmpeiIjEszTFpxoN@cluster0-qx6fz.azure.mongodb.net/test?retryWrites=true&w=majority")

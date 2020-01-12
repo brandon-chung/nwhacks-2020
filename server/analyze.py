@@ -3,8 +3,11 @@ import nltk
 from nltk.corpus import stopwords 
 from nltk.tokenize import word_tokenize 
 
+# This is required before running this file
+# nltk.download('stopwords')
+# nltk.download('punkt')
 
-stop_words = set(stopwords.words('english')) 
+stop_words = set(stopwords.words('english'))
 
 skill_words = topics.fitness + topics.academic + topics.career + topics.social
 skills = {'fitness': topics.fitness,

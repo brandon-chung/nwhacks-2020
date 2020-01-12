@@ -179,16 +179,21 @@ def choose_quest(character: dict, quests: dict) -> (dict, str):
     """
     Randomly chooses available quests for skills without an existing quest.
     """
+    quest = None
+    choice = None
+
     to_pop = []
     print(quests)
     for skill in quests.keys():
         # print(character['skills'])
         if character['skills'][skill]['quest']:
             to_pop.append(skill)
-    for key in to_pop:
-        quests.pop(key)
-    if len(quests.keys()) == 0:
-        return None, None
+
+    # Todo: I don't understand what this is doing, can you let me know? This caused it to fail
+    # for key in to_pop:
+    #     quests.pop(key)
+    # if len(quests.keys()) == 0:
+    #     return None, None
     keys = [key for key in quests.keys()]
     choice = random.choice(keys)
     quest = quests[choice]
