@@ -1,7 +1,7 @@
 import React from 'react';
 import JournalComponent from './JournalComponent'
 import UserDetails from './UserDetails'
-import QuestComponent from './QuestComponent';
+import { Grid } from 'semantic-ui-react'
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -64,13 +64,19 @@ class HomePage extends React.Component {
     }
 
     render() {
-        return (<div>
-            <UserDetails name={this.state.name} skills={this.state.character.skills}/>
-            <JournalComponent 
-                entries={this.state.diary_entries}
-                quests={[this.state.character.skills.fitness.quests, this.state.character.skills.fitness.quests, this.state.character.skills.fitness.quests, this.state.character.skills.fitness.quests]}
-            />
-        </div>);
+        return (
+            <Grid>
+                <Grid.Column width={4}>
+                    <UserDetails name={this.state.name} skills={this.state.character.skills}/>
+                </Grid.Column>
+                <Grid.Column width={12}>
+                    <JournalComponent 
+                        entries={this.state.diary_entries}
+                        quests={[this.state.character.skills.fitness.quests, this.state.character.skills.fitness.quests, this.state.character.skills.fitness.quests, this.state.character.skills.fitness.quests]}
+                    />
+                </Grid.Column>
+            </Grid>
+        );
     }
 }
 
