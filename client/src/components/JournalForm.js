@@ -37,7 +37,10 @@ class JournalForm extends React.Component {
     getUser(first_name, last_name) {
         fetch('http://localhost:5000/api/' + first_name + '/' + last_name, {
             method: 'get',
-            header: 'application/json',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
         }).then(function(response) {
             this.setState(response.json());
             return response.json();
@@ -49,7 +52,10 @@ class JournalForm extends React.Component {
     cancelQuest(first_name, last_name, quest_type) {
         fetch('http://localhost:5000/api/quest/'+ first_name + '/' + last_name + '/' + quest_type, {
             method: 'delete',
-            header: 'application/json'
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
         }).then(function(response) {
             return response.json();
         }).catch((err) => {
